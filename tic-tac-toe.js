@@ -1,17 +1,25 @@
 "strict";
 
 function check_win(color) {
+	let victory = false;
 	for (let i = 1; i <= 3; i++) {
 		if (document.querySelectorAll(`.row${i}.${color}`).length === 3) {
-			document.querySelector("#windlg").style = "";
+			victory = true;
 		}
 	}
 	for (let j = 1; j <= 3; j++) {
 		if (document.querySelectorAll(`.col${j}.${color}`).length === 3) {
-			document.querySelector("#windlg").style = "";
+			victory = true;
 		}
 	}
-	return false;
+	for (let diag of ["fwd", "back"]) {
+		if (document.querySelectorAll(`.${diag}-diag.${color}`).length === 3) {
+			victory = true;
+		}
+	}
+	if (victory) {
+		document.querySelector("#windlg").style = "";
+	}
 }
 
 
