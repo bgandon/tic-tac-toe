@@ -1,7 +1,16 @@
 "strict";
 
 function check_win(color) {
-	/* TODO */
+	for (let i = 1; i <= 3; i++) {
+		if (document.querySelectorAll(`.row${i}.${color}`).length === 3) {
+			document.querySelector("#windlg").style = "";
+		}
+	}
+	for (let j = 1; j <= 3; j++) {
+		if (document.querySelectorAll(`.col${j}.${color}`).length === 3) {
+			document.querySelector("#windlg").style = "";
+		}
+	}
 	return false;
 }
 
@@ -20,6 +29,7 @@ window.addEventListener("load", function () {
 		}
 		let color = isCurrentPlayerRed ? "red" : "green";
 		event.target.classList.add(color);
+		check_win(color)
 		isCurrentPlayerRed = !isCurrentPlayerRed;
 	});
 
