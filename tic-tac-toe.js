@@ -10,12 +10,17 @@ window.addEventListener("load", function () {
 	let isCurrentPlayerRed = true;
 	document.addEventListener("click", function(event) {
 		let matchInfo = event.target.id.match(/cell-([0-2])-([0-2])/)
-		if (matchInfo) {
-			let i = matchInfo[1], j = matchInfo[2];
-			let color = isCurrentPlayerRed ? "red" : "green";
-			event.target.classList.add(color);
-			isCurrentPlayerRed = !isCurrentPlayerRed;
+		if (!matchInfo) {
+			return;
 		}
+		let i = matchInfo[1], j = matchInfo[2];
+		if (event.target.classList.contains("red") ||
+				event.target.classList.contains("green")) {
+			return;
+		}
+		let color = isCurrentPlayerRed ? "red" : "green";
+		event.target.classList.add(color);
+		isCurrentPlayerRed = !isCurrentPlayerRed;
 	});
 });
 
