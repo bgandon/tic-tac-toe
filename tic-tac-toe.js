@@ -49,13 +49,16 @@ window.addEventListener("load", function () {
 		isCurrentPlayerRed = !isCurrentPlayerRed;
 	});
 
-	document.querySelector("#reset").addEventListener("click", function() {
+	function reset() {
 		for (let i = 0; i <= 2; i++) {
 			for (let j = 0; j <= 2; j++) {
 				document.querySelector(`#cell-${i}-${j}`).classList.remove("green", "red");
 			}
 		}
 		document.querySelector("#windlg").style = "display: none;"
-	});
+	}
+
+	document.querySelector("#reset").addEventListener("click", reset);
+	document.querySelector("#restart").addEventListener("click", reset);
 });
 
