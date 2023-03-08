@@ -23,6 +23,9 @@ window.addEventListener("load", function () {
 		}
 		if (victory) {
 			document.querySelector("#windlg").style = "";
+			document.querySelector("#reset").style = "display: none;"
+			document.querySelector("#windlg .winner").textContent = color;
+			document.querySelector("#windlg .winner").classList.add(color);
 		}
 	}
 
