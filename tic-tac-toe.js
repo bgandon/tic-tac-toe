@@ -1,31 +1,36 @@
 "strict";
 
-function check_win(color) {
-	let victory = false;
-	for (let i = 1; i <= 3; i++) {
-		if (document.querySelectorAll(`.row${i}.${color}`).length === 3) {
-			victory = true;
-		}
-	}
-	for (let j = 1; j <= 3; j++) {
-		if (document.querySelectorAll(`.col${j}.${color}`).length === 3) {
-			victory = true;
-		}
-	}
-	for (let diag of ["fwd", "back"]) {
-		if (document.querySelectorAll(`.${diag}-diag.${color}`).length === 3) {
-			victory = true;
-		}
-	}
-	if (victory) {
-		document.querySelector("#windlg").style = "";
-	}
-}
 
 
 window.addEventListener("load", function () {
+	let victory = false;
+
+	function check_win(color) {
+		for (let i = 1; i <= 3; i++) {
+			if (document.querySelectorAll(`.row${i}.${color}`).length === 3) {
+				victory = true;
+			}
+		}
+		for (let j = 1; j <= 3; j++) {
+			if (document.querySelectorAll(`.col${j}.${color}`).length === 3) {
+				victory = true;
+			}
+		}
+		for (let diag of ["fwd", "back"]) {
+			if (document.querySelectorAll(`.${diag}-diag.${color}`).length === 3) {
+				victory = true;
+			}
+		}
+		if (victory) {
+			document.querySelector("#windlg").style = "";
+		}
+	}
+
 	let isCurrentPlayerRed = true;
 	document.addEventListener("click", function(event) {
+		if (victory) {
+			return;
+		}
 		let matchInfo = event.target.id.match(/cell-([0-2])-([0-2])/)
 		if (!matchInfo) {
 			return;
@@ -47,6 +52,7 @@ window.addEventListener("load", function () {
 				document.querySelector(`#cell-${i}-${j}`).classList.remove("green", "red");
 			}
 		}
+		document.querySelector("#windlg").style = "display: none;"
 	});
 });
 
