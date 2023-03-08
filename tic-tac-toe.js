@@ -46,10 +46,11 @@ window.addEventListener("load", function () {
 				|| state.match(/1...1...1/)
 				|| state.match(/..1.1.1../)
 				) {
+			victory = true;
 			document.querySelector("#windlg").style = "";
 			document.querySelector("#reset").style = "display: none;"
 			document.querySelector("#windlg .winner").textContent = color;
-			document.querySelector("#windlg .winner").classList.add(color);
+			document.querySelector("#windlg .winner").className = "winner " + color;
 		}
 	}
 
@@ -80,6 +81,7 @@ window.addEventListener("load", function () {
 			}
 		}
 		document.querySelector("#windlg").style = "display: none;"
+		document.querySelector("#reset").style = "";
 	}
 
 	document.querySelector("#reset").addEventListener("click", reset);
