@@ -29,6 +29,30 @@ window.addEventListener("load", function () {
 		}
 	}
 
+	function check_win_v2(color) {
+		let state = "";
+		for (let i = 0; i <= 2; i++) {
+			for (let j = 0; j <= 2; j++) {
+				let cell = document.querySelector(`#cell-${i}-${j}`);
+				state += (cell.classList.contains(color) ? "1" : "0");
+			}
+		}
+		if (state.match(/1..1..1../)
+				|| state.match(/.1..1..1./)
+				|| state.match(/..1..1..1/)
+				|| state.match(/111....../)
+				|| state.match(/...111.../)
+				|| state.match(/......111/)
+				|| state.match(/1...1...1/)
+				|| state.match(/..1.1.1../)
+				) {
+			document.querySelector("#windlg").style = "";
+			document.querySelector("#reset").style = "display: none;"
+			document.querySelector("#windlg .winner").textContent = color;
+			document.querySelector("#windlg .winner").classList.add(color);
+		}
+	}
+
 	let isCurrentPlayerRed = true;
 	document.addEventListener("click", function(event) {
 		if (victory) {
@@ -45,7 +69,7 @@ window.addEventListener("load", function () {
 		}
 		let color = isCurrentPlayerRed ? "red" : "green";
 		event.target.classList.add(color);
-		check_win(color)
+		check_win_v2(color)
 		isCurrentPlayerRed = !isCurrentPlayerRed;
 	});
 
