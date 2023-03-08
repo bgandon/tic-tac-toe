@@ -22,5 +22,13 @@ window.addEventListener("load", function () {
 		event.target.classList.add(color);
 		isCurrentPlayerRed = !isCurrentPlayerRed;
 	});
+
+	document.querySelector("#reset").addEventListener("click", function() {
+		for (let i = 0; i <= 2; i++) {
+			for (let j = 0; j <= 2; j++) {
+				document.querySelector(`#cell-${i}-${j}`).classList.remove("green", "red");
+			}
+		}
+	});
 });
 
